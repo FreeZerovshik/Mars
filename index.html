@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Марс" />
+  <meta name="theme-color" content="#1a0d0a" />
+  <title>Выживание на Марсе за 100 дней</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game"></canvas>
+    <div id="rotate-hint">Поверните iPad горизонтально 🔄</div>
+  </div>
+  <script>
+    // Загружаем скрипты по порядку с защитой от кэша (удобно при разработке).
+    (function () {
+      var files = ["js/engine.js", "js/scenes.js", "js/main.js"];
+      var v = "?t=" + Date.now();
+      (function next(i) {
+        if (i >= files.length) return;
+        var s = document.createElement("script");
+        s.src = files[i] + v;
+        s.async = false;
+        s.onload = function () { next(i + 1); };
+        document.body.appendChild(s);
+      })(0);
+    })();
+    // Регистрируем service worker для офлайн-режима (только в защищённом
+    // контексте: HTTPS или localhost — иначе iOS его игнорирует).
+    if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

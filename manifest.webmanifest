@@ -1,0 +1,17 @@
+{
+  "name": "Выживание на Марсе за 100 дней",
+  "short_name": "Марс",
+  "description": "Робот выживает на Марсе: ловушки гробниц, добыча минералов, 3D-печать, база, бой с Древним и побег на корабле.",
+  "lang": "ru",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#000000",
+  "theme_color": "#1a0d0a",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
